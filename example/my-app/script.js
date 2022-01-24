@@ -13,7 +13,7 @@ var x = "Lorem ipsum",
 x += "3" + 1;
 
 var baaa = "b" + "a" + +"a" + "a";
-console.log(baaa);
+
 
 //console.log(+"-1");
 
