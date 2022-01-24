@@ -1,4 +1,8 @@
-var firstName;
+/* var firstName;
 firstName= 'Dijana';
 
-console.log(firstName);
+console.log(firstName); */
+
+var firstName = "Anamarija Ksenija Brunhilda Šimić";
+
+console.log("Hello " + firstName);
