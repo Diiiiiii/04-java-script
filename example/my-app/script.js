@@ -15,7 +15,11 @@ x += "3" + 1;
 var baaa = "b" + "a" + +"a" + "a";
 
 
-//console.log(+"-1");
+
+
+console.log(+"-1");
+
+console.log (typeof x,y,q,w, baaa,x);
 
 /*
 ---
