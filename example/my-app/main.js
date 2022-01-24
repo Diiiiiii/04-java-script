@@ -6,3 +6,4 @@ console.log(firstName); */
 var firstName = "Anamarija Ksenija Brunhilda Šimić";
 
 console.log("Hello " + firstName);
+console.log("Your name is " +firstName.length + "characters long");
