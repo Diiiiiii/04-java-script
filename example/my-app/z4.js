@@ -3,7 +3,7 @@
 2. Razlomite ovu ternarnu operaciju na 3 različite operacije!
 var x = z === 2? y : 5;
 
-- varijablu z možete deklarirati i inicijalizirati po želji
+- varijablu z, y možete deklarirati i inicijalizirati po želji
 
  */
 
