@@ -12,7 +12,8 @@ var lastName = "Đuran";
 fullName = firstName + " " + lastName;
 console.log(fullName);
 
-//var x = z === 2? y : 5;
+//var x = z === 2? y : 5; 
+//(ako je z jednak 2 po tipu i vrijednosti onda y spremi u x ako nije onda 5 spremi u x)
 
 var z = 2;
 var y = 3;
