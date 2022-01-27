@@ -29,3 +29,18 @@ while (i < 20) {
     }
     i++;
 }
+
+var i = 1;
+while (i <= 20) {
+    if (i % 2 !== 0) {
+        console.log("Broj" + i + "je paran");
+    } else {
+        console.log("Broj" + i + "je neparan");
+    }
+    i++;
+}
+
+var names = ['John', 'Jane', 'Mike'];
+for (var i = 0; i <names.length; ++i) {
+    console.log(names[i]);
+}
