@@ -1,3 +1,4 @@
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof
 
 var x = "Lorem ipsum",
 
@@ -19,7 +20,7 @@ var baaa = "b" + "a" + +"a" + "a";
 
 console.log(+"-1");
 
-console.log (typeof x,y,q,w, baaa,x);
+console.log (typeof x,y,q,w, baaa);
 
 /*
 ---
