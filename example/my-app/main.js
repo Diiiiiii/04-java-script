@@ -1,35 +1,50 @@
-/* var firstName;
-firstName= 'Dijana';
+ 
+ 
+ 
+ /**
+  * Funkcije
+  * NOTE:
+- Google: ASCII character values in JavaScript ILI koristite toLocaleUpperCase i slično
 
-console.log(firstName); */
+  * Write a program that will rate a password according to the following rules:
+  * 1. At least 8 characters long
+  * 2. At least one number
+  * 3. At least one uppercase character
+  * 4. At least one lowercase character
+  * 5. At least one special character: !, #, (, ), ?, _
+  *
+  * For every rule that the password passes, give the password 1 point.
+  * 
+  * Example:
+  * 12345678 - 2 points (rules 1 and 2) 
+  * 1234567 - 1 point (rules 2)
+  */
 
-/*
-var text = ' Lorem ipsum dolor sit amet';
+  var testCases = [
+    {password: '12345678', rating: 2},
+    {password: '1234567', rating: 1 }
+  ];
 
----
-Koristeći metode rada nad stringovima iz zadanog stringa:
-  1. Spremite duljinu stringa u varijablu.
-  2. Izdvojite riječ 'sit' u zasebnu varijablu.
-  3. Zamijenite riječ 'amet' sa riječi 'elit'.
-  4. Konkatenirajte u novu varijablu zadani string sa stringom 'consectetur adipiscing elit', sa zarezom izmedu.
-  5. Konvertirajte sve riječi u orginalnom stringu u velika slova
-  6. Maknite počenu prazninu u stringu
-  7. Nađite slovo na poziciji 12
-*/
-var firstName = "Anamarija Ksenija Brunhilda Šimić";
+  function checkMinimumLength(password) {
+    // return password.length >= 8 ? 1 : 0;
+    return password.length >= 8;
+  }
 
-console.log("Hello " + firstName);
-console.log("Your name is " + firstName.length + "characters long");
-//console.log("Your fantasy name is " + firstName.replaceAll("i", "y"));
+  function checkPassword(password) {
+    var rating = 0;
+    if (checkMinimumLength(password)) {
+      rating++;
+    }
+    return rating;
+  }
 
-var text = "Lorem ipsum dolor sit amet.";
-var length = text.length;
-//var sit = text.slice(18, 22);
-var sit = text.slice(text.indexOf("sit"), text.indexOf("sit") + 3);
-text.replace("amet", "elit");
-var newText = text + " consectetur adipiscing elit";
-text.toLocaleUpperCase();
-text.trim();
-text.charAt(12);
-text[12];
-//console.log(sit);
+  for (var i = 0; i < testCases.length; i++) {
+    var testCase = testCases[i];
+    console.log(testCase, checkPassword(testCase.password));
+  }
+
+  /* var password1 = '12345678';
+  var result1 = 2;
+
+  var password2 = '1234567';
+  var result2 = 1; */
