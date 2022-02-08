@@ -13,20 +13,29 @@ console.log(timerElement.dataset);
 var time = parseInt(timerElement.dataset.startTime);
 var timerElementStyle = getComputedStyle(timerElement);
 var fontSize = parseInt(timerElementStyle.fontSize);
+var intervalId = null;
 
-var startButton = document.querySelector('[data-action-start]')
-
-var intervalId = setInterval(function () {
-    // console.log(fontSize++);
-    timerElement.style.fontSize = fontSize + 'px';
-    fontSize +=5;
-    if (time === -1) {
-        // timerElement.remove();
-        // timerElement.setAttribute('class', 'expired');
-        timerElement.classList.add('expired');
-        clearInterval(intevalId);
-    } else {
-        timerElement.innerHTML = time;
-        time--;
+var startButton = document.querySelector('[data-action-start]');
+startButton-addEventListener('click', function () {
+    if (intervalId !== null) {
+        clearInterval(intervalId);
     }
-}, 1000);
+    
+    intervalId = setInterval(function () {
+        // console.log(fontSize++);
+        timerElement.style.fontSize = fontSize + 'px';
+        fontSize +=5;
+
+        if (time === -1) {
+            // timerElement.remove();
+            // timerElement.setAttribute('class', 'expired');
+            timerElement.classList.add('expired');
+            clearInterval(intevalId);
+            intervalId = null;
+        } else {
+            timerElement.innerHTML = time;
+            time--;
+        }
+    }, 1000);
+});
+
