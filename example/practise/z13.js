@@ -5,7 +5,7 @@ function sayHello() {
 
 sayHello();
 
-// Funkcija koja poziva samu sebe - omotamo funkciju u zagradu - stvara scope i na kraju ju pozovemo kao svaku drugu funkciju -dvostruke zagrade
+// Funkcija koja poziva samu sebe - omotamo funkciju u zagradu - stvara scope i na kraju ju pozovemo kao svaku drugu funkciju -dvostruke zagrade, tad ona ne mijenja globalni scope
 (function sayHello() {
     console.log('Hello');
 })();
@@ -22,7 +22,7 @@ sayHello();
 sayHello();
 
 
-//Scope i  Closure - varijabla name može uvijek pristupiti u parametru name
+//Scope i  Closure - imamo funkciju getGreetings() i pozovemu ju sa parametrom(name) i ta funkcija vraća van druge funkcije sayHello(),sayHelloHr() itd, svi parametri od roditelja su dostupni u daljnjim nekim funkcijama koje definiramo
 (function() {
 
 function getGreetings(name) {
@@ -57,5 +57,24 @@ console.log(domagojGreetings.sayHelloFr());
 console.log(sayHelloHr("Domagoj"));
 console.log(sayHelloHa("Domagoj"));
 console.log(sayHelloFr("Domagoj")); */
+
+})();
+
+
+//Higher-Order Function, Memoizacija -pamćenje vrijednosti od tih funkcija
+(function () {
+
+function getDiscountPriceCalculator(discount) {
+    var x = Math.random() * 100 + discount;
+    return function (price) {
+        return price - x;
+    }
+}
+
+var getFixed10Discount = getDiscountPriceCalculator(10);
+var getFixed20Discount = getDiscountPriceCalculator(20);
+
+console.log(getFixed10Discount(123));
+console.log(getFixed20Discount(123));
 
 })();
