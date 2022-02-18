@@ -65,3 +65,5 @@ Promise.resolve(coinTossPromise)
 .then((coin) => console.log('Successful coin toss!'))
 .catch((coin) => console.log('Unsuccessful coin toss!')); 
 
+
+
