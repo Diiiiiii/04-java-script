@@ -33,7 +33,7 @@ var intervalId = null;
 
 
 startButton.addEventListener('click', function () {
-    debugger;
+   
     var time = parseInt(timerElement.dataset.startTime);
     var blinkTime = parseInt(timerElement.dataset.blinkTime);
     var fontSize = initialFontSize;
