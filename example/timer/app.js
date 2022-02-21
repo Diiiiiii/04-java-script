@@ -23,35 +23,46 @@ DZ
 
 
 var timerElement = document.getElementById('timer');
-console.log(timerElement.dataset);
-
-var timerElementStyle = getComputedStyle(timerElement);
-var fontSize = parseInt(timerElementStyle.fontSize);
-var intervalId = null;
 
 var startButton = document.querySelector('[data-action-start]');
-startButton-addEventListener('click', function () {
-    var time = parseInt(timerElement.dataset.startTime);
 
+var timerElementStyle = getComputedStyle(timerElement);
+var initialFontSize = parseInt(timerElementStyle.fontSize);
+
+var intervalId = null;
+
+
+startButton.addEventListener('click', function () {
+    debugger;
+    var time = parseInt(timerElement.dataset.startTime);
+    var blinkTime = parseInt(timerElement.dataset.blinkTime);
+    var fontSize = initialFontSize;
+    
+    
     if (intervalId !== null) {
         clearInterval(intervalId);
     }
     
     intervalId = setInterval(function () {
         // console.log(fontSize++);
+        timerElement.innerHTML = time;
         timerElement.style.fontSize = fontSize + 'px';
-        fontSize +=5;
+        fontSize += 5;
 
-        if (time === -1) {
+        
             // timerElement.remove();
             // timerElement.setAttribute('class', 'expired');
-            timerElement.classList.add('expired');
-            clearInterval(intevalId);
-            intervalId = null;
-        } else {
-            timerElement.innerHTML = time;
-            time--;
-        }
-    }, 1000);
-});
+            timerElement.classList.toggle('blink', time > 0 && time < blinkTime);
+            timerElement.classList.toggle('expired', time === 0);
+
+            if (time === 0) {
+                clearInterval(intervalId);
+                intervalId = null;
+                
+                return;
+              }
+              
+              time--;
+            }, 1000);
+          });
 
