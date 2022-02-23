@@ -10,7 +10,7 @@ A product is described by:
 
 ## Core features
 
--[ ] List of all products
+-[x ] List of all products
 -[ ] Add product to cart
 -[ ] Cart preview / List of products in cart
 
