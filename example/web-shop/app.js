@@ -1,3 +1,4 @@
+
 //3) seketiramo productListElement iz div index.html
 const productListElement = document.querySelector("#product-list");
 
