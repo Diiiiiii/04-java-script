@@ -51,6 +51,7 @@ function showPokemon(pokemon) {
   pokemonResult.append(pokemonElement);
 }
 
+//Reakcija na submit obrasca -kad se submita obrazac, spriječi se defoaultno ponašanje tj. relaud preglednika, uzima se iz imput elementa (formQueryElement.value)njegova vrijednost - vrijednost u upisanom inputu. Za tu vrijednost se radi fetch.
 formElement.addEventListener("submit", function (event) {
   event.preventDefault();
 
@@ -62,7 +63,7 @@ formElement.addEventListener("submit", function (event) {
 
     return;
   }
-
+// Za vrijednost upisanu u inputu se radi fetch -dohvaćanje pokemona. Traži se endpoint / vrijednost upisana u inputu
   fetch(`${endpoint}/${value}`)
     .then((response) => {
       console.log(response);
