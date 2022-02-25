@@ -1,60 +1,83 @@
-//Kad grešku imamo kod APIja -krivo upisani http dobivamo grešku ispisanu kod Responsa a ne .chatcha. To znači da nam je API, server vratio grešku dolazi u obliku Responsa u then-u. Do .catch dolazi kad pukne nešto pri slanju zahtjeva (npr. izgubili smo vezu s internetu u trenutku slanja zahtjeva, ili je nešto kod same logike slanja pogrešno -naša logika koju smo radili a ne uz server).
+//Selektiramo sve elemete koji su u HTML-u
+const formElement = document.querySelector("#pokemon-form");
+const formQueryElement = document.querySelector("#pokemon-form-query");
+const pokemonErrorElement = document.querySelector("#pokemon-error");
+const pokemonResult = document.querySelector("#pokemon-result");
+// Definiramo endpoint
+const endpoint = "https://pokeapi.co/api/v2/pokemon";
 
-//Na kraju selektiramo pokemona i apendamo sve unutra
-const pokemonElement = document.querySelector('#pokemon');
+//Funkcije koje prikazuju, jedna pogrešku a druga pokemona, izbriše starog i na mjesto tog elementa ako pokemonn nije null upiše elemente - name, abilities i sprite
+function showError(message) {
+  pokemonErrorElement.innerHTML = message;
+}
 
-const endpoint = "https://pokeapi.co/api/v2/pokemon/bulbasaur";
+function showPokemon(pokemon) {
+  pokemonResult.innerHTML = "";
 
-fetch(endpoint)
+  //Ako pokemon nije null uzme njegovo ime, abilities, sprite 
+  if (pokemon == null) {
+    return;
+  }
+
+  const name = pokemon.name;
+  const abilities = pokemon.abilities;
+  const sprite = pokemon.sprites.front_default;
+
+  // name, abilities i sprite upisuje u kreirane elemente i na kraju ih appenda
+  const pokemonElement = document.createElement("div");
+  pokemonElement.classList.add("pokemon");
+
+  const nameElement = document.createElement("div");
+  nameElement.classList.add("pokemon__name");
+  nameElement.innerHTML = name;
+
+  const abilitiesElement = document.createElement("div");
+  abilitiesElement.classList.add("pokemon__abilities");
+  for (let i = 0; i < abilities.length; i++) {
+    const abilityElement = document.createElement("div");
+    abilityElement.classList.add("pokemon__ability");
+    abilityElement.innerHTML = abilities[i].ability.name;
+    abilitiesElement.append(abilityElement);
+  }
+
+  const spriteElement = document.createElement("img");
+  spriteElement.classList.add("pokemon__sprite");
+  spriteElement.setAttribute("src", sprite);
+
+ //Appendanje
+  pokemonElement.append(spriteElement);
+  pokemonElement.append(nameElement);
+  pokemonElement.append(abilitiesElement);
+  pokemonResult.append(pokemonElement);
+}
+
+formElement.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const value = (formQueryElement.value || "").trim().toLocaleLowerCase();
+
+  if (value === "") {
+    showError("Please enter Pokémon name or ID");
+    showPokemon(null);
+
+    return;
+  }
+
+  fetch(`${endpoint}/${value}`)
     .then((response) => {
-        if (response.ok) {
-            return response.json();
-            //console.log(response);
-        } else {
-            console.log('Error');
-        }
+      console.log(response);
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Could not find Pokémon");
+      }
     })
-    .then(json) => {
-       // console.log(json);
-       const name = json.name;
-       const abilities = json.abilities;
-       const sprite = json.sprites.front_default;
-       console.log(name, abilities, sprite);
-
-       const nameElement = document.createElement('div');
-       nameElement.innerHTML = name;
-
-       const abilitiesElement = document.createElement('div');
-       for(let i = 0; i < abilities.length; i++) {
-           const abilityElement = document.createElement('div');
-           abilityElement.innerHTML = abilities[i].ability.name;
-           abilitiesElement.append(abilityElement);
-       }
-
-       const spriteElement = document.createElement('img');
-       spriteElement.setAttribute('src', sprite);
-
-       pokemonElement.append(spriteElement);
-       pokemonElement.append(nameElement);
-       pokemonElement.append(abilitiesElement);
+    .then((json) => {
+      showError("");
+      showPokemon(json);
     })
-    .catch((error) => console.log(error));
-
-    /* Vježba: JS - Promises
-Trajanje: 20min (18:40 - 19:00)
----
-
-1. Pošaljite zahtjev za vašim najdražim pokemonom putem Fetch API i PokeAPI-ja
-
-2. Kada dobijete odgovor, na temelju odgovora napravite elemente koji će ispisati sljedeće podatke u DOM:
-2a. Ime pokemona (name)
-2b. Imena poteza (abilities)
-2c. Izgled pokemona (front_default sprite)
-2d. Dodajte elemente u DOM (npr. napravite novi element s nekim ID-jem i upišite sadržaj u njega)
-
-3. U slučaju greške (response nije OK) ispišite grešku u DOM.
-
-4. U slučaju greške (catch na fetch-u) ispišite grešku u DOM.
-
-NOTES
-- Ne zaboravite koristiti metode poput document.createElement() i propertyje poput innerHTML kod kreacije DOM-a za ispisivanje pokemona*/
+    .catch((error) => {
+      showError(error.message);
+      showPokemon(null);
+    });
+});
