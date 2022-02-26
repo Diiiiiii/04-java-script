@@ -79,3 +79,14 @@ Npr.
 At least 8 characters long
 1. Input: 1, Output: false
 2. Input 12345678, Output: true */
+
+module.exports = {
+    checkPassword,
+};
+
+/* Vježba: JEST
+
+1. U password-strength-calculator projektu napišite 5 testova za funkciju checkPassword(). Ukoliko test padne, popravite kod u main modulu i pokušajte ponovno dok testovi ne prođu.
+
+2. Napišite barem 1 test za 1 od funkcija pravila (npr. checkMinimumLength()).
+ */
