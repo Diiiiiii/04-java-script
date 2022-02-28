@@ -2,11 +2,13 @@ JS - Parcijalni ispit
 Trajanje: 90m (19:00 - 20:30)
 ---
 
-1. Morate poslati upit umjesto termin query parametra na sljedeći način (bitno je da term šaljemo):
+1. Morate poslati upit umjesto termin query parametra na sljedeći način:
 
 `https://itunes.apple.com/search?term=${value}&entity=song`
 
 2. Pretraživanje radite na submit obrasca, a ne kod svakog unosa.
+
+(Results je array, treba proći kroz array i izvaditi objekt rezultata iz arrayja da mu možemo pristupiti)
 
 Rješenje poslati na mail
 
