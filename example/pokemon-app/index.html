@@ -10,10 +10,13 @@
 <body>
     <main class="wrapper">
         <h1 class="title">PokéSearch</h1>
+        <!--Obrazac za pretraživanje Pokemona-->
         <form id="pokemon-form" class="pokemon-form" autocomplete="off">
+          <!--Element za input i element koji služi za submit-->
           <input id="pokemon-form-query" class="input" type="text" name="query" placeholder="e.g. Pikachu or 25" />
           <button class="button" type="submit">Search</button>
         </form>
+        <!--Rezultat pretraživanja i error u slučaju greške-->
         <div id="pokemon-error" class="pokemon-error"></div>
         <div id="pokemon-result" class="pokemon-result"></div>
       </main>

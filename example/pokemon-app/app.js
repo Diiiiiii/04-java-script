@@ -6,7 +6,7 @@ const pokemonResult = document.querySelector("#pokemon-result");
 // Definiramo endpoint
 const endpoint = "https://pokeapi.co/api/v2/pokemon";
 
-//Funkcije koje prikazuju, jedna pogrešku a druga pokemona, izbriše starog i na mjesto tog elementa ako pokemonn nije null upiše elemente - name, abilities i sprite
+//Funkcije koje prikazuju, jedna pogrešku a druga pokemona, izbriše starog i na mjesto tog elementa ako Pokemon nije null upisuje ih u kreirane elemente - (div, div, div -> name, abilities i sprite) i na kraju ih appenda
 function showError(message) {
   pokemonErrorElement.innerHTML = message;
 }
@@ -51,7 +51,7 @@ function showPokemon(pokemon) {
   pokemonResult.append(pokemonElement);
 }
 
-//Reakcija na submit obrasca -kad se submita obrazac, spriječi se defoaultno ponašanje tj. relaud preglednika, uzima se iz imput elementa (formQueryElement.value)njegova vrijednost - vrijednost u upisanom inputu. Za tu vrijednost se radi fetch.
+//Reakcija na submit obrasca -kad se dogodi submita obrazac, spriječi se defaultno ponašanje tj. reloud preglednika, uzima se iz input elementa (formQueryElement) njegova vrijednost (value) - vrijednost u upisanom inputu. Za tu vrijednost se radi fetch. Ponašanje Defaultnog obrasca - Vidi vježba \example\forma-defaultno ponašanje.
 formElement.addEventListener("submit", function (event) {
   event.preventDefault();
 
@@ -63,11 +63,12 @@ formElement.addEventListener("submit", function (event) {
 
     return;
   }
-// Za vrijednost upisanu u inputu se radi fetch -dohvaćanje pokemona. Traži se endpoint / vrijednost upisana u inputu
+// Za vrijednost upisanu u inputu se radi fetch -dohvaćanje pokemona. Traži se endpoint - ima url i na kraj tog urla(endpointa) ne nalijepi: / vrijednost upisana u inputu
   fetch(`${endpoint}/${value}`)
     .then((response) => {
       console.log(response);
       if (response.ok) {
+        //Vrati se json
         return response.json();
       } else {
         throw new Error("Could not find Pokémon");
@@ -75,8 +76,10 @@ formElement.addEventListener("submit", function (event) {
     })
     .then((json) => {
       showError("");
+      //Prikaže se pokemon
       showPokemon(json);
     })
+    //U slučaje greške Pokemona se obriše i ispiše se greška
     .catch((error) => {
       showError(error.message);
       showPokemon(null);

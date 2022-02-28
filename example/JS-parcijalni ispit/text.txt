@@ -1,0 +1,18 @@
+JS - Parcijalni ispit
+Trajanje: 90m (19:00 - 20:30)
+---
+
+1. Morate poslati upit umjesto termin query parametra na sljedeći način (bitno je da term šaljemo):
+
+`https://itunes.apple.com/search?term=${value}&entity=song`
+
+2. Pretraživanje radite na submit obrasca, a ne kod svakog unosa.
+
+Rješenje poslati na mail
+
+domagoj.strekelj@predavaci.algebra.hr
+OL-OFE_DEV-06-21 - JS - PREZIME IME
+
+Poslati ZIP arhivu kroz attachment ili kroz servis poput WeTransfer. Možete i podići kod na GitHub pa staviti link na repozitorij u mail.
+
+Bonus bodovi za deploy na GitHub pages.
