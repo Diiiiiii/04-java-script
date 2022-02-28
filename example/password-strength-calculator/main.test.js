@@ -10,3 +10,7 @@ test ("Password 1234567 has strength 1", () => {
 test("Password 12345678 has strength 2", () => {
     expect(checkPassword("12345678")).toBe(2);
 });
+
+test("Password abcdefgh has strength 1", () => {
+    expect(checkPassword("abcdefgh")).toBe(1);
+});
